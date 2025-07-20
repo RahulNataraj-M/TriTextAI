@@ -14,11 +14,11 @@ if len(voices) > 1:
 else:
     engine.setProperty('voice', voices[0].id)  # fallback
 
-engine.say("Hello, I am Luna. How can I help you?")
+engine.say("Hello, I am ASSIST_NAME. How can I help you?")
 engine.runAndWait()
 
 def wolfram_spoken(query):
-    APP_ID = "96J963W495"
+    APP_ID = "YOUR APP_ID"
     url = f"http://api.wolframalpha.com/v1/spoken?appid={APP_ID}&i={query}"
     try:
         response = requests.get(url)
@@ -34,7 +34,7 @@ def take_command():
         command = listener.recognize_google(voice)
         return command.lower()
 
-def run_luna():
+def run_ASSIST_NAME():
     try:
         command = take_command()
         print("Command:", command)
@@ -45,8 +45,8 @@ def run_luna():
             engine.runAndWait()
             pywhatkit.playonyt(song)
 
-        elif 'luna' in command:
-            query = command.replace('luna', '').strip()
+        elif 'ASSIST_NAME' in command:
+            query = command.replace('ASSIST_NAME', '').strip()
             output = wolfram_spoken(query)
             print("Answer:", output)
             engine.say("Got it")
@@ -63,6 +63,6 @@ def run_luna():
         engine.runAndWait()
 
 while True:
-    run_luna()
+    run_ASSIST_NAME()
     engine.runAndWait()
     time.sleep(2) 
